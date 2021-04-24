@@ -1,9 +1,7 @@
 // FUNCTION #1 of 4
-function buildCharts(UID) {
+function buildCharts(patientID) {
 
-    var barChart = d3.select("#bar");
-    var bubbleChart = d3.select("#bubble");
-    var guageChart = d3.select("#guage");
+    
 
     d3.json("samples.json").then(data => {
         console.log(data)
@@ -11,7 +9,7 @@ function buildCharts(UID) {
 };
 
 // FUNCTION #2 of 4
-function populateDemoInfo(UID) {
+function populateDemoInfo(patientID) {
 
     var demographicInfoBox = d3.select("#sample-metadata");
 
@@ -21,22 +19,22 @@ function populateDemoInfo(UID) {
 }
 
 // FUNCTION #3 of 4
-function optionChanged(UID) {
-    console.log(UID);
-    buildCharts(UID);
-    populateDemoInfo(UID);
+function optionChanged(patientID) {
+    console.log(patientID);
+    buildCharts(patientID);
+    populateDemoInfo(patientID);
 }
 
 // FUNCTION #4 of 4
 function initDashboard() {
     var dropdown = d3.select("#selDataset")
     d3.json("samples.json").then(data => {
-        var names = data.names;
-        names.forEach(UID => {
-            dropdown.append("option").text(UID).property("value", UID)
+        var patientIDs = data.names;
+        patientIDs.forEach(patientID => {
+            dropdown.append("option").text(patientID).property("value", patientID)
         })
-        buildCharts(names[0]);
-        populateDemoInfo(names[0]);
+        buildCharts(patientIDs[0]);
+        populateDemoInfo(patientIDs[0]);
     });
 };
 
