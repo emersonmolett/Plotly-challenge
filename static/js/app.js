@@ -36,40 +36,40 @@ function buildCharts(patientID) {
     })
 
 
-// Create a bubble chart that displays each sample
+    // Create a bubble chart that displays each sample
 
-d3.json("samples.json").then((data) => {
-    // console.log(data);
-    // holder for variables in plots
-    var samples = data.samples;
-    var resultArray = samples.filter(s => s.id == patientID);
-    var result = resultArray[0];
-    // console.log(result);
-    var otu_ids = result.otu_ids;
-    var otu_labels = result.otu_labels;
-    var sample_values = result.sample_values;
+    d3.json("samples.json").then((data) => {
+        // console.log(data);
+        // holder for variables in plots
+        var samples = data.samples;
+        var resultArray = samples.filter(s => s.id == patientID);
+        var result = resultArray[0];
+        // console.log(result);
+        var otu_ids = result.otu_ids;
+        var otu_labels = result.otu_labels;
+        var sample_values = result.sample_values;
 
-    var plot2 = {
-        x: otu_ids.slice(0, 30),
-        y: sample_values.slice(0, 30),
-        mode: "markers",
-        marker: {
-            size: sample_values.slice(0, 30),
-            color: otu_ids
-        },
-        text: otu_labels.slice(0, 30)
-    };
+        var plot2 = {
+            x: otu_ids.slice(0, 30),
+            y: sample_values.slice(0, 30),
+            mode: "markers",
+            marker: {
+                size: sample_values.slice(0, 30),
+                color: otu_ids
+            },
+            text: otu_labels.slice(0, 30)
+        };
 
-    var data2 = [plot2];
-    var layout2 = {
-        title: "OTUs in Subjects' Navel",
-        showlegend: false,
-    };
+        var data2 = [plot2];
+        var layout2 = {
+            title: "OTUs in Subjects' Navel",
+            showlegend: false,
+        };
 
-    Plotly.newPlot("bubble", data2, plot2);
+        Plotly.newPlot("bubble", data2, plot2);
 
-    // FUNCTION #2 of 4
-   });
+        // FUNCTION #2 of 4
+    });
 };
 
 function populateDemoInfo(patientID) {
@@ -80,24 +80,31 @@ function populateDemoInfo(patientID) {
         // console.log(data)
     })
 };
-    // FUNCTION #3 of 4
-    function optionChanged(patientID) {
-        console.log(patientID);
-        buildCharts(patientID);
-        populateDemoInfo(patientID);
-    };
 
-    // FUNCTION #4 of 4
-    function initDashboard() {
-        var dropdown = d3.select("#selDataset")
-        d3.json("samples.json").then((data) => {
-            var patientIDs = data.names;
-            patientIDs.forEach((patientID) => {
-                dropdown.append("option").text(patientID).property("value", patientID)
-            })
-            buildCharts(patientIDs[0]);
-            populateDemoInfo(patientIDs[0]);
-        });
-    };
+//Display the sample metadata card
+var card = d3.select(".card-title")
+Object.entries(data.metadata[0]).forEach(([key, value]) =>
+card.append("p").text(`${key} : ${value}`)
+);
 
-    initDashboard();
+// FUNCTION #3 of 4
+function optionChanged(patientID) {
+    console.log(patientID);
+    buildCharts(patientID);
+    populateDemoInfo(patientID);
+};
+
+// FUNCTION #4 of 4
+function initDashboard() {
+    var dropdown = d3.select("#selDataset")
+    d3.json("samples.json").then((data) => {
+        var patientIDs = data.names;
+        patientIDs.forEach((patientID) => {
+            dropdown.append("option").text(patientID).property("value", patientID)
+        })
+        buildCharts(patientIDs[0]);
+        populateDemoInfo(patientIDs[0]);
+    });
+};
+
+initDashboard();
