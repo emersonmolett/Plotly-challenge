@@ -96,12 +96,15 @@ function populateDemoInfo(patientID) {
     });
 }
 
+
+
 // FUNCTION #3 of 4
 function optionChanged(patientID) {
     console.log(patientID);
     buildCharts(patientID);
     populateDemoInfo(patientID);
-};
+}
+
 
 
 // FUNCTION #4 of 4
@@ -115,7 +118,7 @@ function initDashboard() {
         buildCharts(patientIDs[0]);
         populateDemoInfo(patientIDs[0]);
     });
-};
+}
 
 
 
