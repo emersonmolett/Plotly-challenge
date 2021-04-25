@@ -82,10 +82,10 @@ function populateDemoInfo(patientID) {
 };
 
 //Display the sample metadata card
-
+function demographicInfoBox(patientID) {
 d3.json("samples.json").then((data) => {
     var metadata = data.metadata;
-    var resultArray = metadata.filter(s => s.id == sampleID);
+    var resultArray = metadata.filter(s => s.id == patientID);
     var result = resultArray[0];
     
     var demographicInfoBox = d3.select("#sample-metadata");
@@ -94,7 +94,7 @@ d3.json("samples.json").then((data) => {
         demographicInfoBox.append("h6").text(`${key.toUpperCase()}: ${value}`);
     });
 });
-
+};
        
     // FUNCTION #3 of 4
     function optionChanged(patientID) {
