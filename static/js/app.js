@@ -103,6 +103,7 @@ function optionChanged(patientID) {
     populateDemoInfo(patientID);
 };
 
+
 // FUNCTION #4 of 4
 function initDashboard() {
     var dropdown = d3.select("#selDataset")
@@ -115,5 +116,7 @@ function initDashboard() {
         populateDemoInfo(patientIDs[0]);
     });
 };
+
+
 
 initDashboard();
