@@ -68,9 +68,12 @@ function buildCharts(patientID) {
 
         Plotly.newPlot("bubble", data2, plot2);
 
-        // FUNCTION #2 of 4
+
     });
 };
+
+// FUNCTION #2 of 4
+//Display the sample metadata card
 
 function populateDemoInfo(patientID) {
 
@@ -79,41 +82,38 @@ function populateDemoInfo(patientID) {
     d3.json("samples.json").then(data => {
         // console.log(data)
     })
-};
 
-//Display the sample metadata card
-function demographicInfoBox(patientID) {
-d3.json("samples.json").then((data) => {
-    var metadata = data.metadata;
-    var resultArray = metadata.filter(s => s.id == patientID);
-    var result = resultArray[0];
-    
-    var demographicInfoBox = d3.select("#sample-metadata");
-    demographicInfoBox.html("");
-    Object.entries(result).forEach(([key, value]) => {
-        demographicInfoBox.append("h6").text(`${key.toUpperCase()}: ${value}`);
-    });
-});
-};
-       
-    // FUNCTION #3 of 4
-    function optionChanged(patientID) {
-        console.log(patientID);
-        buildCharts(patientID);
-        populateDemoInfo(patientID);
-    };
+    d3.json("samples.json").then((data) => {
+        var metadata = data.metadata;
+        var resultArray = metadata.filter(s => s.id == patientID);
+        var result = resultArray[0];
 
-    // FUNCTION #4 of 4
-    function initDashboard() {
-        var dropdown = d3.select("#selDataset")
-        d3.json("samples.json").then((data) => {
-            var patientIDs = data.names;
-            patientIDs.forEach((patientID) => {
-                dropdown.append("option").text(patientID).property("value", patientID)
-            })
-            buildCharts(patientIDs[0]);
-            populateDemoInfo(patientIDs[0]);
+        var demographicInfoBox = d3.select("#sample-metadata");
+        demographicInfoBox.html("");
+        Object.entries(result).forEach(([key, value]) => {
+            demographicInfoBox.append("h6").text(`${key.toUpperCase()}: ${value}`);
         });
-    };
+    });
+}
 
-    initDashboard();
+// FUNCTION #3 of 4
+function optionChanged(patientID) {
+    console.log(patientID);
+    buildCharts(patientID);
+    populateDemoInfo(patientID);
+};
+
+// FUNCTION #4 of 4
+function initDashboard() {
+    var dropdown = d3.select("#selDataset")
+    d3.json("samples.json").then((data) => {
+        var patientIDs = data.names;
+        patientIDs.forEach((patientID) => {
+            dropdown.append("option").text(patientID).property("value", patientID)
+        })
+        buildCharts(patientIDs[0]);
+        populateDemoInfo(patientIDs[0]);
+    });
+};
+
+initDashboard();
