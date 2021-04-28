@@ -1,0 +1,1 @@
+In this assignment, I leveraged D3 library information. Additionally, code was written to display a horizontal bar chart and a bubble chart. The JSON data was used in order to display demographic information on the page, which is updated based on the dropdown selection. 
