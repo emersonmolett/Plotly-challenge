@@ -1,3 +1,5 @@
+// assistance from tutor, instructor, teaching assistant and classmate for setting up base code and spotting syntax errors.
+
 // FUNCTION #1 of 4
 function buildCharts(patientID) {
     d3.json("samples.json").then((data) => {
