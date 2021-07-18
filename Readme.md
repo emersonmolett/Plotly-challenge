@@ -20,4 +20,5 @@ This visually was correctly launched:
 <li>Sample Values for the marker size</li>
 <li>OTU labels for text values</li> 
 
+<br>
 Additionally, the metadata adjusted without error. The metadata also updates when a new sample is selected. 
