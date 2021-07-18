@@ -7,3 +7,15 @@ Code was used successfully to:
 <li>Displays the top ten (10) values</li>
 <li>Operational Taxonomic Units (OTU) displayed as labels</li>
 <li>OTU labels displayed as the tool tip</li>
+
+</br>
+
+Bubble Chart:<br>
+This visually was correctly launched:
+<li>Chart initializes without error</li>
+<li>Chart updates when a new sample is selected</li>
+<li>OTUs for the x-values</li>
+<li>OTUs for marker colors</li>
+<li>Sample Values for the y-values</li>
+<li>Sample Values for the marker size</li>
+<li>OTU labels for text values</li> 
